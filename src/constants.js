@@ -18,6 +18,7 @@ export const MESSAGES_TYPES = {
     IMAGE: 'imgreply'
   },
   QUICK_REPLY: 'quickreply',
+  BUTTON_TEMPLATE: 'buttontemplate',
   CUSTOM_COMPONENT: 'component'
 };
 

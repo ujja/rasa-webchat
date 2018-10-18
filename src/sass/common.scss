@@ -1,13 +1,13 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
-$roboto: 'Roboto', serif;  
+$roboto: 'Roboto', serif;
 
 @mixin message-bubble($color, $textColor) {
   background-color: $color;
   color: $textColor;
   border-radius: 10px;
   padding: 15px;
-  max-width: 215px;
+  //max-width: 215px;
   text-align: left;
   font-family: $roboto;
 }

@@ -22,6 +22,8 @@ export function createLinkSnippet(link, sender) {
     type: MESSAGES_TYPES.SNIPPET.LINK,
     component: Snippet,
     title: link.title,
+    defaultUrlAction: link.defaultUrlAction,
+    imageUrl: link.imageUrl,
     link: link.link,
     content: link.content,
     target: link.target || '_blank',
@@ -65,6 +67,18 @@ export function createQuickReply(quickReply, sender) {
   });
 }
 
+export function createButtonTemplate(buttonTemplate, sender) {
+  return Map({
+    type: MESSAGES_TYPES.BUTTON_TEMPLATE,
+    component: QuickReply,
+    text: quickReply.text,
+    hint: quickReply.hint || 'Select an option...',
+    quick_replies: List(quickReply.quick_replies),
+    sender,
+    showAvatar: true,
+    chosenReply: null
+  });
+}
 export function createComponentMessage(component, props, showAvatar) {
   return Map({
     type: MESSAGES_TYPES.CUSTOM_COMPONENT,
