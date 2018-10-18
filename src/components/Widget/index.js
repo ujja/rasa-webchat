@@ -11,9 +11,10 @@ import {
   addVideoSnippet,
   addImageSnippet,
   addQuickReply,
+  addButtonTemplate,
   initialize
 } from "actions";
-import { isSnippet, isVideo, isImage, isQR, isText } from "./msgProcessor";
+import { isSnippet, isVideo, isImage, isQR, isText, isButtonTemplate } from "./msgProcessor";
 import WidgetLayout from "./layout";
 
 
@@ -56,8 +57,10 @@ class Widget extends Component {
       const element = message.attachment.payload.elements[0];
       this.props.dispatch(addLinkSnippet({
         title: element.title,
-        content: element.buttons[0].title,
-        link: element.buttons[0].url,
+        defaultUrlAction: element.defaultUrlAction,
+        imageUrl: element.imageUrl,
+        content: element.buttons ? element.buttons[0].title : null,
+        link: element.buttons ? element.buttons[0].url : null,
         target: '_blank'
       }));
     } else if (isVideo(message)) {
@@ -71,6 +74,12 @@ class Widget extends Component {
       this.props.dispatch(addImageSnippet({
         title: element.title,
         image: element.src
+      }));
+    } else if (isButtonTemplate(message)) {
+      const element = message.attachment.payload;
+      this.props.dispatch(addButtonTemplate({
+        title: message.text,
+        buttons: message.buttons
       }));
     }
   }

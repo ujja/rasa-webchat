@@ -74,6 +74,13 @@ export function addQuickReply(quickReply) {
   };
 }
 
+export function addButtonTemplate(buttonTemplate) {
+  return {
+    type: actions.ADD_BUTTON_TEMPLATE,
+    buttonTemplate
+  };
+}
+
 export function setQuickReply(id, title) {
   return {
     type: actions.SET_QUICK_REPLY,

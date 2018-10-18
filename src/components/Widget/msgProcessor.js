@@ -30,3 +30,8 @@ export function isQR(message) {
     && Object.keys(message).includes('text')
     && Object.keys(message).includes('quick_replies');
 }
+
+export function isButtonTemplate(message) {
+  return Object.keys(message).includes('text')
+    && Object.keys(message).includes('buttons');
+}

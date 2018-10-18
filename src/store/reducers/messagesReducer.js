@@ -34,6 +34,9 @@ export default function reducer(state = initialState, action) {
     case actionTypes.ADD_QUICK_REPLY: {
       return state.push(createQuickReply(action.quickReply, MESSAGE_SENDER.RESPONSE));
     }
+    case actionTypes.ADD_BUTTON_TEMPLATE: {
+      return state.push(createButtonTemplate(action.buttonTemplate, MESSAGE_SENDER.RESPONSE));
+    }
     case actionTypes.ADD_COMPONENT_MESSAGE: {
       return state.push(createComponentMessage(action.component, action.props, action.showAvatar));
     }
