@@ -32,8 +32,8 @@ class Widget extends Component {
   componentDidMount() {
     const { socket } = this.props;
 
-    socket.on('bot_uttered', (botUttered) => {
-      this.messages.push(botUttered);
+    socket.onmessage((event) => {
+      this.messages.push(JSON.parse(event.data));
     });
 
   }
@@ -81,7 +81,7 @@ class Widget extends Component {
     const { initPayload, initialized, customData, socket } = this.props;
     if (!initialized) {
       this.props.dispatch(initialize());
-      socket.emit('user_uttered', { message: initPayload, customData});
+      socket.emit(JSON.stringify({ message: initPayload, customData}));
     }
   };
 

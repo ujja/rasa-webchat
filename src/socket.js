@@ -1,22 +1,18 @@
-import io from 'socket.io-client';
 
 export default function (socketUrl, customData, path) {
   const options = path ? { path } : {};
-  const socket = io(socketUrl, options);
-  socket.on('connect', () => {
-    console.log(`connect:${socket.id}`);
+  console.log(`Socket options: ${JSON.stringify(options, 2)}`);
+  const socket = new WebSocket(`ws://${socketUrl}/${options.path}`);
+  socket.onopen = () => {
+    console.log(`connect:${socket}`);
     socket.customData = customData;
-  });
+  };
 
-  socket.on('connect_error', (error) => {
+  socket.onerror =  (error) => {
     console.log(error);
-  });
+  };
 
-  socket.on('error', (error) => {
-    console.log(error);
-  });
-
-  socket.on('disconnect', (reason) => {
+  socket.onclose((reason) => {
     console.log(reason);
   });
 
