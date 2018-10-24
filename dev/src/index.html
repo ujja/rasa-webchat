@@ -11,8 +11,8 @@
   WebChat.default.init({
     selector: "#webchat",
     initPayload: "/get_started",
-    socketUrl: "http://localhost:5005/",
-    socketPath: "/socket.io/",
+    customData: {"userId": "DummyUserId", appId: "Livechat test"}, // arbitrary custom data. Stay minimal as this will be added to the socket
+    socketUrl: "http://localhost:9092",
     title:"DEV Test"
   })
 </script>

@@ -18,6 +18,7 @@ export const MESSAGES_TYPES = {
     IMAGE: 'imgreply'
   },
   QUICK_REPLY: 'quickreply',
+  BUTTON_TEMPLATE: 'buttontemplate',
   CUSTOM_COMPONENT: 'component'
 };
 
@@ -29,7 +30,8 @@ export const PROP_TYPES = {
       MESSAGES_TYPES.QUICK_REPLY,
       MESSAGES_TYPES.SNIPPET.LINK,
       MESSAGES_TYPES.IMGREPLY.IMAGE,
-      MESSAGES_TYPES.VIDREPLY.VIDEO
+      MESSAGES_TYPES.VIDREPLY.VIDEO,
+      MESSAGES_TYPES.BUTTON_TEMPLATE
     ]),
     id: PropTypes.number,
     text: PropTypes.string,
@@ -91,10 +93,33 @@ export const PROP_TYPES = {
     text: PropTypes.string,
     hint: PropTypes.string,
     quick_replies: ImmutablePropTypes.listOf(
-        PropTypes.shape({
-          title: PropTypes.string,
-          payload: PropTypes.string
-        })),
+      PropTypes.shape({
+        title: PropTypes.string,
+        payload: PropTypes.string
+      })),
+    sender: PropTypes.oneOf([
+      MESSAGE_SENDER.CLIENT,
+      MESSAGE_SENDER.RESPONSE
+    ]),
+    chooseReply: PropTypes.func,
+    getChosenReply: PropTypes.func,
+    toggleInputDisabled: PropTypes.func,
+    inputState: PropTypes.bool,
+    chosenReply: PropTypes.string
+  }),
+
+  BUTTON_TEMPLATE: ImmutablePropTypes.contains({
+    type: PropTypes.oneOf([
+      MESSAGES_TYPES.QUICK_REPLY
+    ]),
+    id: PropTypes.number,
+    text: PropTypes.string,
+    hint: PropTypes.string,
+    quick_replies: ImmutablePropTypes.listOf(
+      PropTypes.shape({
+        title: PropTypes.string,
+        payload: PropTypes.string
+      })),
     sender: PropTypes.oneOf([
       MESSAGE_SENDER.CLIENT,
       MESSAGE_SENDER.RESPONSE

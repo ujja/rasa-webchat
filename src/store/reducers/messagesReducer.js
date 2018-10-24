@@ -3,6 +3,7 @@ import { MESSAGE_SENDER } from 'constants';
 
 import {
     createQuickReply,
+    createButtonTemplate,
     createNewMessage,
     createLinkSnippet,
     createVideoSnippet,

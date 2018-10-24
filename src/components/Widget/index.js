@@ -53,6 +53,8 @@ class Widget extends Component {
       this.props.dispatch(addResponseMessage(message.text));
     } else if (isQR(message)) {
       this.props.dispatch(addQuickReply(message));
+    } else if (isButtonTemplate(message)) {
+      this.props.dispatch(addButtonTemplate(message));
     } else if (isSnippet(message)) {
       const element = message.attachment.payload.elements[0];
       this.props.dispatch(addLinkSnippet({
@@ -74,12 +76,6 @@ class Widget extends Component {
       this.props.dispatch(addImageSnippet({
         title: element.title,
         image: element.src
-      }));
-    } else if (isButtonTemplate(message)) {
-      const element = message.attachment.payload;
-      this.props.dispatch(addButtonTemplate({
-        title: message.text,
-        buttons: message.buttons
       }));
     }
   }

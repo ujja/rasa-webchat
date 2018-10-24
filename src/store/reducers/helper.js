@@ -5,7 +5,7 @@ import Video from 'messagesComponents/VidReply';
 import Image from 'messagesComponents/ImgReply';
 import Message from 'messagesComponents/Message';
 import Snippet from 'messagesComponents/Snippet';
-import QuickReply from 'messagesComponents/QuickReply';
+import ButtonTemplate from 'messagesComponents/ButtonTemplate';
 
 export function createNewMessage(text, sender) {
   return Map({
@@ -62,6 +62,17 @@ export function createQuickReply(quickReply, sender) {
     sender,
     showAvatar: true,
     chosenReply: null
+  });
+}
+
+export function createButtonTemplate(buttonTemplate, sender) {
+  return Map({
+    type: MESSAGES_TYPES.BUTTON_TEMPLATE,
+    component: ButtonTemplate,
+    text: buttonTemplate.text,
+    buttons: List(buttonTemplate.buttons),
+    sender,
+    showAvatar: true
   });
 }
 
